@@ -14,7 +14,7 @@ function addTask() {
     });
   
     const removeBtn = document.createElement('button');
-    removeBtn.textContent = 'X';
+    removeBtn.textContent = '🗑️';
     removeBtn.classList.add('remove-btn');
     removeBtn.onclick = () => li.remove();
   
