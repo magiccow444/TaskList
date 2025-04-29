@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     background: #f5f5f5;
     display: flex;
     justify-content: center;
@@ -28,6 +28,7 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
   }
   
   ul {
@@ -39,7 +40,6 @@ body {
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
-    font-family: 'Roboto', sans-serif;
   }
   
   li.completed {
@@ -54,6 +54,5 @@ body {
     padding: 4px 8px;
     cursor: pointer;
     border-radius: 4px;
-    font-family: 'Roboto', sans-serif;
   }
   
