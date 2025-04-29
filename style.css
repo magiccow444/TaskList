@@ -66,6 +66,10 @@ body {
     width: 100%;
   }
   
+  .add-btn:hover {
+    background: darkgreen;
+  }
+
   .remove-btn {
     background: red;
     border: none;
