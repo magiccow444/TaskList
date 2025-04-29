@@ -4,8 +4,9 @@ body {
     display: flex;
     justify-content: center;
     padding: 50px;
+    text-align: center;
   }
-  
+
   .container {
     background: white;
     padding: 30px;
