@@ -45,15 +45,36 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
     font-size: 16px;
-  }  
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    min-width: 0;           
+  } 
   
   li.completed {
     text-decoration: line-through;
     color: gray;
+    background-color: #f0f0f0;
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    border-radius: 6px;
   }
   
+  .task-text {
+    flex: 1;                
+    display: inline-block;
+    transition: background-color 0.2s ease;
+  }
+
+li.completed .task-text {
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
   .add-btn {
     height: 40px;
     font-size: 16px;
