@@ -1,6 +1,7 @@
 const taskInput = document.getElementById('taskInput');
 const taskTimeInput = document.getElementById('taskTime');
 const taskUnorderedList = document.getElementById('taskUnorderedList');
+const taskOrderedList = document.getElementById('taskOrderedList');
 
 // Function to change the time from military time to normal
 function formatTime24to12(timeStr) {
@@ -9,15 +10,16 @@ function formatTime24to12(timeStr) {
   const ampm = hourNum >= 12 ? 'PM' : 'AM';
   const hour12 = hourNum % 12 || 12; // Converts 0 to 12
   return `${hour12}:${minute} ${ampm}`;
-
 }
 
 function addTask() {
   const taskText = taskInput.value.trim();
   const rawTime = taskTimeInput.value;
+  let timedTask = false;
   let taskTime = '';
   if (rawTime) {
     taskTime = formatTime24to12(rawTime);
+    timedTask = true;
   }
 
   if (taskText === '') return;
@@ -51,7 +53,12 @@ function addTask() {
   li.appendChild(removeBtn);
 
   // Append the list item to the task list
-  taskUnorderedList.appendChild(li);
+  if (timedTask) {
+    taskOrderedList.appendChild(li);
+  }
+  else {
+    taskUnorderedList.appendChild(li);
+  }
 
   // Clear input
   taskInput.value = '';
