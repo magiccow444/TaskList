@@ -57,7 +57,6 @@ function addTask() {
 
   // Create remove button
   const removeBtn = document.createElement('button');
-  removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
   removeBtn.classList.add('remove-btn');
   removeBtn.textContent = '🗑️';
 

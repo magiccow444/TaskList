@@ -9,6 +9,7 @@ body {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+     transition: background 0.3s ease;
   }
 
   h1 {
@@ -115,21 +116,11 @@ li.completed .task-text {
   .remove-btn:hover {
     background: darkred;
   }
-  
-  /* Common background behavior */
-body {
-  transition: background 0.3s ease;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 /* Container background stays readable */
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  /* Aligns button and children to the left */
-
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   padding: 30px;
@@ -159,15 +150,27 @@ body {
 }
 
 #toggleThemesBtn {
-  width: 25%;                 /* Makes it 1/4 the width of its container */
+  width: 15%;                 /* Makes it 1/4 the width of its container */
   font-size: 12px;            /* Small readable text */
   padding: 4px 8px;           /* Compact button spacing */
-  border-radius: 4px;         /* Rounded corners */
+  border-radius: 10px;         /* Rounded corners */
   border: none;
-  background-color: #e0e0e0;  /* Light gray background */
+  background-color: #e0e0e0;  
   cursor: pointer;
   margin-bottom: 10px;        /* Adds space below the button */
   align-self: flex-start;     /* Keeps it aligned left inside flex container */
+}
+
+.theme-buttons button {
+  font-size: 12px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #c5aaaa;
+
+  /* 👇 Add or modify this line */
+  width: 20%; /* or 25%, or any value you want */
 }
 
 /* Themes */
