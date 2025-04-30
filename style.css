@@ -128,32 +128,78 @@ body {
 }
 
 /* Themes */
-
 body.birthday {
   background-image: url('https://plus.unsplash.com/premium_photo-1663837827386-2eb667eca095?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmlydGhkYXklMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: #333;
+  color: #ff69b4;
 }
 
-
 body.christmas {
-  background-image: url('https://images.unsplash.com/photo-1542327897-44d6d3f9c49b?auto=format&fit=crop&w=1500&q=80');
-  color: #2e2e2e;
+  background-image: url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=90&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ee1c1c;
 }
 
 body.halloween {
-  background-image: url('https://images.unsplash.com/photo-1604014238700-37b21690bcb4?auto=format&fit=crop&w=1500&q=80');
-  color: #f7dada;
+  background-image: url('https://images.unsplash.com/photo-1635632919713-2a17877a7c8d?w=2000&q=90&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #e87228;
 }
 
 body.newyear {
-  background-image: url('https://images.unsplash.com/photo-1515456790973-0e3b45399b56?auto=format&fit=crop&w=1500&q=80');
-  color: #f8f8f8;
+  background-image: url('https://images.unsplash.com/photo-1515995301990-280d37b2a8c9?w=2000&q=90&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #d42525;
 }
 
 body.vacation {
-  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=80');
-  color: #1e3d59;
+  background-image: url('https://images.unsplash.com/photo-1716660787535-b80a5e2287e7?w=2000&q=90&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #1d81d8;
+}
+
+/* Theme Buttons  */
+body.birthday .add-btn {
+  background-color: #ff69b4; /* pink */
+}
+body.birthday .remove-btn {
+  background-color: #8e24aa; /* purple */
+}
+
+body.christmas .add-btn {
+  background-color: #ee1c1c; /* red */
+}
+body.christmas .remove-btn {
+  background-color: #2e7d32; /* green */
+}
+
+body.halloween .add-btn {
+  background-color: #e87228; /* orange */
+}
+body.halloween .remove-btn {
+  background-color: #591f9f; /* dark purple */
+}
+
+body.newyear .add-btn {
+  background-color: #d42525; /* black */
+}
+body.newyear .remove-btn {
+  background-color: #fff06d; /* gold/yellow */
+}
+
+body.vacation .add-btn {
+  background-color: #1d81d8; /* ocean blue */
+}
+body.vacation .remove-btn {
+  background-color: #fff06d; /* sun yellow */
 }
