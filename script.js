@@ -69,3 +69,15 @@ function addTask() {
       addTask();
     }
   });
+
+  function setTheme(theme) {
+    const body = document.body;
+    const themes = ['birthday', 'christmas', 'halloween', 'newyear', 'vacation'];
+  
+    // Remove existing theme classes
+    themes.forEach(t => body.classList.remove(t));
+  
+    // Add new theme class
+    body.classList.add(theme);
+  }
+  
