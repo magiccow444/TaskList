@@ -12,6 +12,21 @@ function formatTime24to12(timeStr) {
   return `${hour12}:${minute} ${ampm}`;
 }
 
+// Changing to 24 hour to sort
+function convert12to24(time12h) {
+  const [time, modifier] = time12h.split(' ');
+  let [hours, minutes] = time.split(':');
+  if (hours === '12') hours = '0';
+  if (modifier === 'PM') hours = parseInt(hours) + 12;
+  return `${hours.padStart(2, '0')}:${minutes}`;
+}
+
+// For sorting the timed tasks
+function getTimeAsNumber(timeStr) {
+  const [hour, minute] = timeStr.split(':').map(Number);
+  return hour * 60 + minute;
+}
+
 function addTask() {
   const taskText = taskInput.value.trim();
   const rawTime = taskTimeInput.value;
@@ -26,11 +41,14 @@ function addTask() {
 
   // Create list item
   const li = document.createElement('li');
+  if (timedTask) {
+    li.setAttribute('data-time24', rawTime); // Save raw 24-hour time for sorting
+  }
 
   // Create span for task text
   const taskSpan = document.createElement('span');
-  taskSpan.textContent = taskTime ? `${taskTime} - ${taskText}` : taskText;
-  taskSpan.classList.add('task-text');
+  taskSpan.classList.add('task-text');  
+  taskSpan.textContent = timedTask ? `${taskTime} - ${taskText}` : taskText;
 
   // Add strikethrough behavior
   li.addEventListener('click', () => {
@@ -54,7 +72,26 @@ function addTask() {
 
   // Append the list item to the task list
   if (timedTask) {
-    taskOrderedList.appendChild(li);
+    const newTimeValue = getTimeAsNumber(rawTime); // rawTime = taskTimeInput.value
+    let inserted = false;
+
+    // Loop through all current list items and put the current task where it needs to go
+    for (let i = 0; i < taskOrderedList.children.length; i++) {
+      const existingLi = taskOrderedList.children[i]; 
+      const existingRawTime = existingLi.getAttribute('data-time24');
+      if (!existingRawTime) continue;
+      const existingTimeValue = getTimeAsNumber(existingRawTime);
+
+      if (newTimeValue < existingTimeValue) {
+        taskOrderedList.insertBefore(li, existingLi);
+        inserted = true;
+        break;
+      }
+    }
+
+    if (!inserted) {
+      taskOrderedList.appendChild(li); // If not inserted, add to end
+    }
   }
   else {
     taskUnorderedList.appendChild(li);
@@ -62,6 +99,7 @@ function addTask() {
 
   // Clear input
   taskInput.value = '';
+  taskTimeInput.value = '';
 }
   
   // Listens for the "Enter" key press while typing in the input box
