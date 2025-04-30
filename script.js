@@ -9,6 +9,7 @@ function formatTime24to12(timeStr) {
   const ampm = hourNum >= 12 ? 'PM' : 'AM';
   const hour12 = hourNum % 12 || 12; // Converts 0 to 12
   return `${hour12}:${minute} ${ampm}`;
+  
 }
 
 function addTask() {
