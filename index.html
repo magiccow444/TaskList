@@ -6,7 +6,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="theme-buttons">
+  <button id="toggleThemesBtn">🎨 Choose Theme</button>
+  
+  <div class="theme-buttons" id="themeButtons">
+    <button onclick="setTheme('white')">⬜ White</button>
+    <button onclick="setTheme('black')">⬛ Black</button>
     <button onclick="setTheme('birthday')">🎂 Birthday</button>
     <button onclick="setTheme('christmas')">🎄 Christmas</button>
     <button onclick="setTheme('halloween')">🎃 Halloween</button>

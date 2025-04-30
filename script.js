@@ -64,15 +64,26 @@ function addTask() {
   taskInput.value = '';
 }
   
+  // Listens for the "Enter" key press while typing in the input box
+  // If Enter is pressed, it triggers the addTask() function to add a new to-do
   document.getElementById('taskInput').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
       addTask();
     }
   });
 
+  // Toggles the visibility of the theme buttons when "Choose Theme" is clicked
+  // It adds or removes the 'show' class to show/hide the theme panel
+  document.getElementById('toggleThemesBtn').addEventListener('click', () => {
+    const themePanel = document.getElementById('themeButtons');
+    themePanel.classList.toggle('show');
+  });  
+
+  // Sets the selected theme by adding the corresponding class to the <body>
+  // It first removes any previous theme classes to avoid conflicts
   function setTheme(theme) {
     const body = document.body;
-    const themes = ['birthday', 'christmas', 'halloween', 'newyear', 'vacation'];
+    const themes = ['white', 'black', 'birthday', 'christmas', 'halloween', 'newyear', 'vacation'];
     themes.forEach(t => body.classList.remove(t));
     body.classList.add(theme);
   }
