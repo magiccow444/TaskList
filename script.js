@@ -13,32 +13,49 @@ function formatTime24to12(timeStr) {
 }
 
 function addTask() {
-    const taskText = taskInput.value.trim();
-    const rawTime = taskTimeInput.value;
-    let taskTime = '';
-    if (rawTime) {
-      taskTime = formatTime24to12(rawTime);
-    }
-  
-    if (taskText === '') return;
-
-    const li = document.createElement('li');
-    li.textContent = taskTime ? `${taskTime} - ${taskText}` : taskText;
-  
-    li.addEventListener('click', () => {
-      li.classList.toggle('completed');
-    });
-  
-    const removeBtn = document.createElement('button');
-    removeBtn.textContent = '🗑️';
-    removeBtn.classList.add('remove-btn');
-    removeBtn.onclick = () => li.remove();
-  
-    li.appendChild(removeBtn);
-    taskList.appendChild(li);
-    taskInput.value = ''
-    taskTimeInput.value = '';
+  const taskText = taskInput.value.trim();
+  const rawTime = taskTimeInput.value;
+  let taskTime = '';
+  if (rawTime) {
+    taskTime = formatTime24to12(rawTime);
   }
+
+  if (taskText === '') return;
+
+  // Create list item
+  const li = document.createElement('li');
+
+  // Create span for task text
+  const taskSpan = document.createElement('span');
+  taskSpan.textContent = taskTime ? `${taskTime} - ${taskText}` : taskText;
+  taskSpan.classList.add('task-text');
+
+  // Add strikethrough behavior
+  li.addEventListener('click', () => {
+    li.classList.toggle('completed');
+  });
+
+  // Create remove button
+  const removeBtn = document.createElement('button');
+  removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
+  removeBtn.classList.add('remove-btn');
+  removeBtn.textContent = '🗑️';
+
+  removeBtn.onclick = (e) => {
+    e.stopPropagation(); // Prevent toggle when clicking trash can
+    li.remove();
+  };
+
+  // Append task text and remove button to the list item
+  li.appendChild(taskSpan);
+  li.appendChild(removeBtn);
+
+  // Append the list item to the task list
+  taskList.appendChild(li);
+
+  // Clear input
+  taskInput.value = '';
+}
   
   document.getElementById('taskInput').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
