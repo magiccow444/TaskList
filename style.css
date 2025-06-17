@@ -1,143 +1,135 @@
-body {
-    font-family: 'Times New Roman', Times, serif;
+body {    /* OVERALL BACKGROUND & LAYOUT OF PAGE */
     background: #f5f5f5;
     display: flex;
+    font-family: 'Times New Roman', Times, serif;
     justify-content: center;
     padding: 50px;
 
     background-attachment: fixed;
-    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-     transition: background 0.3s ease;
+    background-size: cover;
+    transition: background 0.3s ease;
   }
 
-  h1 {
-    text-align: center;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid #000000; /* or another visible color */
-    margin: 5px 0;
-    width: 100%;
-  }
-
-  .container {
-    background: white;
-    padding: 30px;
-    border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 300px;
-    word-break: break-all;
-  }
-  
-  input {
-    width: 92%;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    padding: 6px 10px;
-    margin-bottom: 6px;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    min-width: 0;           
-  } 
-  
-  li.completed {
-    text-decoration: line-through;
-    color: gray;
-    background-color: #f0f0f0;
-    padding: 6px 10px;
-    margin-bottom: 6px;
-    border-radius: 6px;
-  }
-  
-  .task-text {
-    flex: 1;                
-    display: inline-block;
-    transition: background-color 0.2s ease;
-  }
-
-li.completed .task-text {
-  background-color: #f0f0f0;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-  .add-btn {
-    height: 40px;
-    font-size: 16px;
-    padding: 0 12px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .add-btn:hover {
-    background: darkgreen;
-  }
-
-  .remove-btn {
-    background: red;
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  
-  .remove-btn:hover {
-    background: darkred;
-  }
-
-/* Container background stays readable */
-.container {
-  display: flex;
-  flex-direction: column;
+.container {    /* T0-DO LIST CONTAINER (THE WHITE BOX) */
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
-  padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-  max-height: 80vh;
-  overflow-y: auto;
+  display: flex;          /* Allows stacking children vertically */
+  flex-direction: column; /* Puts elements in a column layout */
+  overflow-y: auto;       /* Adds scrollbar if content is too tall */
+  padding: 35px;          /* Inner space around content */
+  width: 400px;           /* To-Do list container width */
+  word-break: break-all;  /* Breaks long words so they don't overflow */
 }
 
-.task-row {
+body.white .container {   /* CONTAINER FOR WHITE THEME */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+h1 {    /* PAGE TITLE */
+  text-align: center;     /* Centers the page title text */
+}
+
+hr {    /* HORIZONTAL LINE SEPARATING TIMED/NONTIMED ITEMS */
+  border: none;
+  border-top: 1px solid #000000; /* or another visible color */
+  margin: 2px 0;
+  width: 100%;
+}
+
+input {   /* INPUT BOXES (TASK & TIME) */
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 92%;
+}
+
+button {    /* GENERAL BUTTON FORMATTING */
+  width: 100%;
+  padding: 10px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+ul {    /* Removes default list styles and padding for all task lists */
+  list-style: none;
+  padding: 0;
+}
+
+li {    /* Styles each task list item: spacing & sizing */
+  align-items: center;
+  border-radius: none;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 16px;
+  justify-content: space-between;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  min-width: 0;    
+  padding: 6px 10px;
+  position: relative;
+  width: 100%;       
+} 
+
+li.completed {    /* Styles completed tasks with gray text & strikethrough */
+  background-color: #00000017;
+  border-radius: none;
+  color: gray;            /* Turns text gray when completed */
+  line-height: 1.4;
+  margin-bottom: 6px;       /* Spacing for below this task */
+  padding: 6px 10px;
+  text-decoration: line-through;  /* Strikethrough when completed */
+}
+
+.task-text {    /* applies to the task description text inside each list item */
+  flex: 1;                
+  line-height: 1.4;
+  transition: background-color 0.2s ease;
+}
+
+.add-btn {    /* Specific style for the add button */
+  background: #28a745;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.add-btn:hover {    /* When add button is hovered, button changes to dark green */
+  background: darkgreen;
+}
+
+.remove-btn {   /* Specific style for the remove/trash button */
+  align-items: center;    /* Vertically centers the trash icon */
+  background: red;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: flex;          /* Makes button behave like a flex container inside */
+  flex-shrink: 0;         /* Keeps trash icon size consistent */
+  font-size: 16px;
+  height: 40px;
+  justify-content: center;  /* Horizonatally centers trash icon */
+  margin-left: auto;      /* Places trash icon to far right */
+  width: 40px;
+}
+
+.remove-btn:hover {   /* When remove button is hovered, button changes to dark red */
+
+  background: darkred;
+}
+
+.task-row {   /* Lays out the inputs and add button horizontally with wrapping on small screens */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -145,55 +137,56 @@ li.completed .task-text {
   width: 100%;
 }
 
-#themeButtons {
+#themeButtons {   /* Styles the group of theme buttons (initally hidden) */
   display: none;
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 0;
 }
 
-#themeButtons.show {
+#themeButtons.show {    /* Displays the theme buttons when toggled */
   display: flex;
 }
 
-#toggleThemesBtn {
-  width: 15%;                 /* Makes it 1/4 the width of its container */
-  font-size: 12px;            /* Small readable text */
-  padding: 4px 8px;           /* Compact button spacing */
-  border-radius: 10px;         /* Rounded corners */
+#toggleThemesBtn {    /* STYLES THE 'CHOOSE THEME' TOGGLE */
+  font-size: 12px;             /* Text size inside button */
+  padding: 6px 10px;           /* Compact button spacing */
+  height: 45px;
+  width: 150px;                /* Makes it 1/4 the width of its container */
   border: none;
-  background-color: #e0e0e0;  
+  border-radius: 10px;         /* Makes the borders round */
   cursor: pointer;
-  margin-bottom: 10px;        /* Adds space below the button */
-  align-self: flex-start;     /* Keeps it aligned left inside flex container */
+  background-color: rgba(239, 239, 239, 0.7); /* Background color*/
+  color: black;              /* Black font */ 
+  align-self: flex-start;      /* Keeps it aligned left inside flex container */
 }
 
-.theme-buttons button {
-  font-size: 12px;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #c5aaaa;
-
-  /* 👇 Add or modify this line */
-  width: 20%; /* or 25%, or any value you want */
+.theme-buttons button {   /* STYLES EACH THEME BUTTON */
+  font-size: 12px;            /* Text size inside button */
+  padding: 6px 10px;          /* Inner spacing: top/bot 6px, left/right 10px) */
+  height: 45px;               /* Height */
+  width: auto;                /* Width */
+  border: none;               /* No border */
+  border-radius: 10px;         /* Makes the borders round */
+  cursor: pointer;            /* Shows pointer cursor when hovering */
+  background-color: rgba(239, 239, 239, 0.7); /* Background color*/
+  color: black;              /* Black font */
 }
 
-/* Themes */
-body.white {
+/* THEMES */
+body.white {    /* STYLES WHITE THEME */
   background-color: #ffffff; 
   background-image: none;
   color: #000000; 
 }
 
-body.black {
+body.black {    /* STYLES BLACK THEME */
   background-color: #000000; 
   background-image: none;
   color: #000000; 
 }
 
-body.birthday {
+body.birthday {    /* STYLES BIRTHDAY THEME */
   background-image: url('https://plus.unsplash.com/premium_photo-1663837827386-2eb667eca095?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmlydGhkYXklMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww');
   background-size: cover;
   background-position: center;
@@ -201,7 +194,7 @@ body.birthday {
   color: #ff69b4;
 }
 
-body.christmas {
+body.christmas {    /* STYLES CHRISTMAS THEME */
   background-image: url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
@@ -209,7 +202,7 @@ body.christmas {
   color: #ee1c1c;
 }
 
-body.halloween {
+body.halloween {    /* STYLES HALLOWEEN THEME */
   background-image: url('https://images.unsplash.com/photo-1635632919713-2a17877a7c8d?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
@@ -217,7 +210,7 @@ body.halloween {
   color: #e87228;
 }
 
-body.newyear {
+body.newyear {    /* STYLES NEW YEARS THEME */
   background-image: url('https://images.unsplash.com/photo-1515995301990-280d37b2a8c9?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center center;
@@ -225,7 +218,7 @@ body.newyear {
   color: #d42525;
 }
 
-body.vacation {
+body.vacation {    /* STYLES VACATION THEME */
   background-image: url('https://images.unsplash.com/photo-1716660787535-b80a5e2287e7?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
@@ -233,7 +226,7 @@ body.vacation {
   color: #1d81d8;
 }
 
-/* Theme Buttons  */
+/* CUSTOMIZED COLORS FOR THE ADD/REMOVE BUTTONS FOR EACH THEME */
 body.birthday .add-btn {
   background-color: #ff69b4; /* pink */
 }
@@ -269,8 +262,8 @@ body.vacation .remove-btn {
   background-color: #fff06d; /* sun yellow */
 }
 
-/* Theme Toggler */
-.theme-buttons {
+/* THEME TOGGLER */
+.theme-buttons {    /* DISPLAYS THEME OPTIONS */
   display: flex;
   flex-wrap: wrap;
   gap: 4px;         /* space between buttons */
@@ -279,12 +272,18 @@ body.vacation .remove-btn {
 }
 
 
-.theme-buttons button {
-  font-size: 12px;
-  padding: 6px 10px;
-  height: auto;
-  min-width: 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: none;
+.wrapper {    /* FLEX CONTAINER THAT CENTERS EVERYTHING HORIZONTALLY */
+  display: flex;                  /* */
+  flex-direction: column;         /* */
+  align-items: center;            /* Horizonally centers */
+  justify-content: flex-start;    /* Aligns at top of page */
+  min-height: 100vh;              /* Fills the screen vertically */
+  padding-top: 40px;              /* Space from the top of the page */
+  gap: 10px;                      /* Space between elements */
+}
+
+.theme-controls {   /* KEEPS THE THEME TOGGLE CENTERED */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
