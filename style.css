@@ -41,19 +41,38 @@ hr {    /* HORIZONTAL LINE SEPARATING TIMED/NONTIMED ITEMS */
 
 input {   /* INPUT BOXES (TASK & TIME) */
   margin-bottom: 10px;
+  overflow-x: auto;           /* Allows horizontal scrolling if needed */
   padding: 10px;
-  width: 92%;
+  width: 93.9%;
+  white-space: nowrap;        /* Prevents text from wrapping */
+}
+
+#taskInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 14px;
+  height: auto;               /* Allow height to grow */
+  margin-bottom: 10px;
+  min-height: 20px;           /* Box height starts small */
+  line-height: 1.4;
+  overflow: hidden;           /* Hides scrollbars */
+  padding: 10px;
+  resize: none;               /* Prevents manual resizing by user */
+  white-space: pre-wrap;
+  width: 99.9%;
 }
 
 button {    /* GENERAL BUTTON FORMATTING */
-  width: 100%;
-  padding: 10px;
   background: #28a745;
-  color: white;
   border: none;
   border-radius: 4px;
+  color: white;
   cursor: pointer;
   font-family: 'Times New Roman', Times, serif;
+  padding: 10px;
+  width: 100%;
 }
 
 ul {    /* Removes default list styles and padding for all task lists */
@@ -61,38 +80,47 @@ ul {    /* Removes default list styles and padding for all task lists */
   padding: 0;
 }
 
-li {    /* Styles each task list item: spacing & sizing */
-  align-items: center;
+li {    /* STYLES ENTIRE TASK LIST (THE CONTAINER: INCLUDES TEXT & TRASH ICON) */
+  align-items: center;        /* Vertically centers the contents inside the task item */
   border-radius: none;
-  box-sizing: border-box;
-  display: flex;
+  box-sizing: border-box;     /* Keeps border inside total width, prevents overflow */
+  display: flex;              /* Puts task item side by side to side trash icon */
   font-size: 16px;
-  justify-content: space-between;
-  line-height: 1.4;
-  margin-bottom: 6px;
-  min-width: 0;    
-  padding: 6px 10px;
-  position: relative;
-  width: 100%;       
+  justify-content: space-between; /* Places item on left and trash on right */
+  margin-bottom: 6px;         /* Adds space between each task item */
+  min-width: 0;               /* Fixes improper text wrapping? */
+  padding: 6px 10px;          /* Spacing: top/bot 6px, left/right 10px */
+  position: relative;         /* Positions trash icon inside each task row */
+  width: 100%;                /* Makes taskk width same size as parent (the .container) */
 } 
 
-li.completed {    /* Styles completed tasks with gray text & strikethrough */
+li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   background-color: #00000017;
-  border-radius: none;
+  border-radius: 0;
   color: gray;            /* Turns text gray when completed */
-  line-height: 1.4;
-  margin-bottom: 6px;       /* Spacing for below this task */
+  margin-bottom: 6px;       /* Spacing for below this task (matches li) */
   padding: 6px 10px;
-  text-decoration: line-through;  /* Strikethrough when completed */
+  text-decoration: line-through;  /* Adds a strikethrough when task completed */
 }
 
-.task-text {    /* applies to the task description text inside each list item */
-  flex: 1;                
-  line-height: 1.4;
-  transition: background-color 0.2s ease;
+.task-text {    /* STYLES TASK ITEM (JUST THE TEXT DESCRIPTION INSIDE THE CONTAINER) */
+  flex: 1;                    /* Expands task to take up all available space */     
+  transition: background-color 0.2s ease; /* Fade transition for background change */
+  overflow-wrap: anywhere;    /* Allows long words to wrap */
+  padding-right: 12px;        /* Adds space between text and trash icon */
+  white-space: normal;        /* Allows line breaks */
+  word-break: normal;         /* Allows text to wrap if needed */
 }
 
-.add-btn {    /* Specific style for the add button */
+.task-row {   /* Lays out the inputs and add button horizontally with wrapping on small screens */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;        /* Let it wrap on small screens */
+  width: 100%;
+}
+
+.add-btn {    /* ADD BUTTON FORMATTING */
   background: #28a745;
   border: none;
   border-radius: 4px;
@@ -104,11 +132,11 @@ li.completed {    /* Styles completed tasks with gray text & strikethrough */
   width: 100%;
 }
 
-.add-btn:hover {    /* When add button is hovered, button changes to dark green */
+.add-btn:hover {    /* CHANGE COLOR WHEN HOVERING ADD BUTTON */
   background: darkgreen;
 }
 
-.remove-btn {   /* Specific style for the remove/trash button */
+.remove-btn {   /* REMOVE/TRASH BUTTON FORMATTING */
   align-items: center;    /* Vertically centers the trash icon */
   background: red;
   border: none;
@@ -124,17 +152,9 @@ li.completed {    /* Styles completed tasks with gray text & strikethrough */
   width: 40px;
 }
 
-.remove-btn:hover {   /* When remove button is hovered, button changes to dark red */
+.remove-btn:hover {   /* CHANGE COLOR WHEN HOVERING REMOVE REMOVE */
 
   background: darkred;
-}
-
-.task-row {   /* Lays out the inputs and add button horizontally with wrapping on small screens */
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;        /* Let it wrap on small screens */
-  width: 100%;
 }
 
 #themeButtons {   /* Styles the group of theme buttons (initally hidden) */

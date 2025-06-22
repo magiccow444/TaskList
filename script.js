@@ -3,7 +3,7 @@ const taskTimeInput = document.getElementById('taskTime');
 const taskUnorderedList = document.getElementById('taskUnorderedList');
 const taskOrderedList = document.getElementById('taskOrderedList');
 
-// Function to change the time from military time to normal
+// FUNCTION TO CONVERT MILITARY TIME TO AMs AND PMs
 function formatTime24to12(timeStr) {
   const [hour, minute] = timeStr.split(':');
   const hourNum = parseInt(hour, 10);
@@ -12,7 +12,7 @@ function formatTime24to12(timeStr) {
   return `${hour12}:${minute} ${ampm}`;
 }
 
-// Changing to 24 hour to sort
+// CHANGING TO 24 HOUR TO SORT?
 function convert12to24(time12h) {
   const [time, modifier] = time12h.split(' ');
   let [hours, minutes] = time.split(':');
@@ -21,23 +21,37 @@ function convert12to24(time12h) {
   return `${hours.padStart(2, '0')}:${minutes}`;
 }
 
-// For sorting the timed tasks
+// FUNCTION TO SORT TIMED TASKS
 function getTimeAsNumber(timeStr) {
   const [hour, minute] = timeStr.split(':').map(Number);
   return hour * 60 + minute;
 }
+
+// MAKES INPUT BOX GROW AS CHARACTER INPUT INCREASES
+taskInput.addEventListener('input', () => {
+  taskInput.style.height = 'auto';    // Resets height
+  taskInput.style.height = taskInput.scrollHeight + 'px';   // Set height to match content
+});
 
 function addTask() {
   const taskText = taskInput.value.trim();
   const rawTime = taskTimeInput.value;
   let timedTask = false;
   let taskTime = '';
+  
   if (rawTime) {
     taskTime = formatTime24to12(rawTime);
     timedTask = true;
   }
 
   if (taskText === '') return;
+  
+  taskInput.value = '';
+  taskInput.style.height = 'auto';    // Resets height after clearing
+  setTimeout(() => {
+    taskInput.style.height = taskInput.scrollHeight + 'px';
+  }, 0);
+  taskTimeInput.value = '';
 
   // Create list item
   const li = document.createElement('li');
