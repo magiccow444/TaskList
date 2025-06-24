@@ -36,7 +36,7 @@ function getTimeAsNumber(timeStr) {
 
 // FUNCTION TO ADD TASK
 function addTask() {
-  const taskText = taskInput.value.trim();    // retrieves task input and automatically trims it
+  const taskText = taskInput.value.trim();    // retrieves task input (trim removes extra spaces)
   const rawTime = taskTimeInput.value;        // retreives inputted time
   let timedTask = false;                      // track if time is stored
   let taskTime = '';
@@ -76,10 +76,17 @@ function addTask() {
   }
 
   // SPAN FOR NEW TASKS (STYLE IN CSS)
-  const taskSpan = document.createElement('span');
-  taskSpan.classList.add('task-text');  
+  // SPANS ARE INLINE ELEMENTS USED FOR WRAPPING TEXT & APPLYING STYLES
+
+  // creates a <span> HTML element to hold the text of the added task
+  const taskSpan = document.createElement('span');  
+  // adds a class to new <span>: it's defined in CSS to control how task looks 
+  taskSpan.classList.add('task-text');    
+  // sets up what appears inside the <span> element
   taskSpan.innerHTML = timedTask
+    // formats timed tasks & allows for 'shift enter' for indented inputs
     ? `${taskTime} - ${taskText.replace(/\n/g, '<br>')}`
+    // formats un-timed tasks & allows for 'shift enter' for indented inputs
     : taskText.replace(/\n/g, '<br>');
 
   // SLIGHT DELAY FOR BROWSER TO CALCULTAE THE SCROLL HEIGHT
@@ -107,7 +114,7 @@ function addTask() {
       }
     }
 
-    // INSURANCE: IF TIMED TASKED ISN'T PLACED CORRECTLY, IT JUST ADDS IT TO THE END OF THE ORDERED LIST
+    // IF TIMED TASK ISN'T PLACED CORRECTLY, TASK IS ADDED TO THE END OF ORDERED LIST
     if (!inserted) {
       taskOrderedList.appendChild(li); // If not inserted, add to end
     }

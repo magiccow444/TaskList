@@ -1,18 +1,20 @@
-body {    /* OVERALL BACKGROUND & LAYOUT OF PAGE */
-    background: #f5f5f5;
-    display: flex;
-    font-family: 'Times New Roman', Times, serif;
-    justify-content: center;
-    padding: 50px;
+/* OVERALL BACKGROUND & LAYOUT OF PAGE */
+body {    
+  background: #f5f5f5;
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
+  justify-content: center;
+  padding: 50px;
 
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: background 0.3s ease;
-  }
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: background 0.3s ease;
+}
 
-.container {    /* T0-DO LIST CONTAINER (THE WHITE BOX) */
+/* T0-DO LIST CONTAINER (THE WHITE BOX) */
+.container {    
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -24,22 +26,26 @@ body {    /* OVERALL BACKGROUND & LAYOUT OF PAGE */
   word-break: break-all;  /* Breaks long words so they don't overflow */
 }
 
-body.white .container {   /* CONTAINER FOR WHITE THEME */
+/* CONTAINER FOR WHITE THEME */
+body.white .container {   
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-h1 {    /* PAGE TITLE */
+/* PAGE TITLE */
+h1 {    
   text-align: center;     /* Centers the page title text */
 }
 
-hr {    /* HORIZONTAL LINE SEPARATING TIMED/NONTIMED ITEMS */
+/* HORIZONTAL LINE SEPARATING TIMED/NONTIMED ITEMS */
+hr {    
   border: none;
   border-top: 1px solid #000000; /* or another visible color */
   margin: 2px 0;
   width: 100%;
 }
 
-input {   /* INPUT BOXES (TASK & TIME) */
+/* INPUT BOXES (TASK & TIME) */
+input {   
   margin-bottom: 10px;
   overflow-x: auto;           /* Allows horizontal scrolling if needed */
   padding: 10px;
@@ -64,7 +70,8 @@ input {   /* INPUT BOXES (TASK & TIME) */
   width: 99.9%;
 }
 
-button {    /* GENERAL BUTTON FORMATTING */
+/* GENERAL BUTTON FORMATTING */
+button {    
   background: #28a745;
   border: none;
   border-radius: 4px;
@@ -75,12 +82,14 @@ button {    /* GENERAL BUTTON FORMATTING */
   width: 100%;
 }
 
-ul {    /* Removes default list styles and padding for all task lists */
+/* Removes default list styles and padding for all task lists */
+ul {    
   list-style: none;
   padding: 0;
 }
 
-li {    /* STYLES ENTIRE TASK LIST (THE CONTAINER: INCLUDES TEXT & TRASH ICON) */
+/* STYLES ENTIRE TASK LIST (THE CONTAINER: INCLUDES TEXT & TRASH ICON) */
+li {    
   align-items: center;        /* Vertically centers the contents inside the task item */
   border-radius: none;
   box-sizing: border-box;     /* Keeps border inside total width, prevents overflow */
@@ -94,7 +103,8 @@ li {    /* STYLES ENTIRE TASK LIST (THE CONTAINER: INCLUDES TEXT & TRASH ICON) *
   width: 100%;                /* Makes taskk width same size as parent (the .container) */
 } 
 
-li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
+/* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
+li.completed {    
   background-color: #00000017;
   border-radius: 0;
   color: gray;            /* Turns text gray when completed */
@@ -103,7 +113,8 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   text-decoration: line-through;  /* Adds a strikethrough when task completed */
 }
 
-.task-text {    /* STYLES TASK ITEM (JUST THE TEXT DESCRIPTION INSIDE THE CONTAINER) */
+/* STYLES TASK ITEM (JUST THE TEXT DESCRIPTION INSIDE THE CONTAINER) */
+.task-text {   
   flex: 1;                    /* Expands task to take up all available space */     
   transition: background-color 0.2s ease; /* Fade transition for background change */
   overflow-wrap: anywhere;    /* Allows long words to wrap */
@@ -112,7 +123,8 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   word-break: normal;         /* Allows text to wrap if needed */
 }
 
-.task-row {   /* Lays out the inputs and add button horizontally with wrapping on small screens */
+/* Lays out the inputs and add button horizontally with wrapping on small screens */
+.task-row {   
   display: flex;
   align-items: center;
   gap: 10px;
@@ -120,7 +132,8 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   width: 100%;
 }
 
-.add-btn {    /* ADD BUTTON FORMATTING */
+/* ADD BUTTON FORMATTING */
+.add-btn {    
   background: #28a745;
   border: none;
   border-radius: 4px;
@@ -132,11 +145,13 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   width: 100%;
 }
 
-.add-btn:hover {    /* CHANGE COLOR WHEN HOVERING ADD BUTTON */
+/* CHANGE COLOR WHEN HOVERING ADD BUTTON */
+.add-btn:hover {    
   background: darkgreen;
 }
 
-.remove-btn {   /* REMOVE/TRASH BUTTON FORMATTING */
+/* REMOVE/TRASH BUTTON FORMATTING */
+.remove-btn {   
   align-items: center;    /* Vertically centers the trash icon */
   background: red;
   border: none;
@@ -152,23 +167,23 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   width: 40px;
 }
 
-.remove-btn:hover {   /* CHANGE COLOR WHEN HOVERING REMOVE REMOVE */
+/* CHANGE COLOR WHEN HOVERING REMOVE REMOVE */
+.remove-btn:hover {   
 
   background: darkred;
 }
 
-#themeButtons {   /* Styles the group of theme buttons (initally hidden) */
+/* Styles the group of theme buttons (initally hidden) */
+#themeButtons {   
   display: none;
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 0;
 }
 
-#themeButtons.show {    /* Displays the theme buttons when toggled */
-  display: flex;
-}
-
-#toggleThemesBtn {    /* STYLES THE 'CHOOSE THEME' TOGGLE */
+/* THEME TOGGLER */
+/* STYLES THE 'CHOOSE THEME' TOGGLE */
+#toggleThemesBtn {    
   font-size: 12px;             /* Text size inside button */
   padding: 6px 10px;           /* Compact button spacing */
   height: 45px;
@@ -181,7 +196,41 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   align-self: flex-start;      /* Keeps it aligned left inside flex container */
 }
 
-.theme-buttons button {   /* STYLES EACH THEME BUTTON */
+/* DISPLAYS THEME OPTIONS */
+.theme-buttons {    
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;         /* space between buttons */
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* KEEPS THE THEME TOGGLE CENTERED */
+.theme-controls {   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* FLEX CONTAINER THAT CENTERS EVERYTHING HORIZONTALLY */
+.wrapper {    
+  display: flex;                  /* */
+  flex-direction: column;         /* */
+  align-items: center;            /* Horizonally centers */
+  justify-content: flex-start;    /* Aligns at top of page */
+  min-height: 100vh;              /* Fills the screen vertically */
+  padding-top: 40px;              /* Space from the top of the page */
+  gap: 10px;                      /* Space between elements */
+}
+
+/* THEMES: BACKGROUNDS IMAGES & COLORS */
+/* DISPLAYS THEME BUTTONS WHEN TOGGLED */
+#themeButtons.show {    
+  display: flex;
+}
+
+/* STYLES EACH THEME BUTTON */
+.theme-buttons button {   
   font-size: 12px;            /* Text size inside button */
   padding: 6px 10px;          /* Inner spacing: top/bot 6px, left/right 10px) */
   height: 45px;               /* Height */
@@ -193,52 +242,52 @@ li.completed {    /* CHANGE FORMAT FOR WHEN MARKING TASK ITEM AS COMPLETE */
   color: black;              /* Black font */
 }
 
-/* THEMES */
-body.white {    /* STYLES WHITE THEME */
+/* STYLES WHITE THEME */
+body.white {    
   background-color: #ffffff; 
   background-image: none;
   color: #000000; 
 }
-
-body.black {    /* STYLES BLACK THEME */
+ /* STYLES BLACK THEME */
+body.black {   
   background-color: #000000; 
   background-image: none;
   color: #000000; 
 }
-
-body.birthday {    /* STYLES BIRTHDAY THEME */
+/* STYLES BIRTHDAY THEME */
+body.birthday {    
   background-image: url('https://plus.unsplash.com/premium_photo-1663837827386-2eb667eca095?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmlydGhkYXklMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #ff69b4;
 }
-
-body.christmas {    /* STYLES CHRISTMAS THEME */
+/* STYLES CHRISTMAS THEME */
+body.christmas {    
   background-image: url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #ee1c1c;
 }
-
-body.halloween {    /* STYLES HALLOWEEN THEME */
+/* STYLES HALLOWEEN THEME */
+body.halloween {    
   background-image: url('https://images.unsplash.com/photo-1635632919713-2a17877a7c8d?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #e87228;
 }
-
-body.newyear {    /* STYLES NEW YEARS THEME */
+/* STYLES NEW YEARS THEME */
+body.newyear {    
   background-image: url('https://images.unsplash.com/photo-1515995301990-280d37b2a8c9?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   color: #d42525;
 }
-
-body.vacation {    /* STYLES VACATION THEME */
+/* STYLES VACATION THEME */
+body.vacation {    
   background-image: url('https://images.unsplash.com/photo-1716660787535-b80a5e2287e7?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
@@ -280,30 +329,4 @@ body.vacation .add-btn {
 }
 body.vacation .remove-btn {
   background-color: #fff06d; /* sun yellow */
-}
-
-/* THEME TOGGLER */
-.theme-buttons {    /* DISPLAYS THEME OPTIONS */
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;         /* space between buttons */
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-
-.wrapper {    /* FLEX CONTAINER THAT CENTERS EVERYTHING HORIZONTALLY */
-  display: flex;                  /* */
-  flex-direction: column;         /* */
-  align-items: center;            /* Horizonally centers */
-  justify-content: flex-start;    /* Aligns at top of page */
-  min-height: 100vh;              /* Fills the screen vertically */
-  padding-top: 40px;              /* Space from the top of the page */
-  gap: 10px;                      /* Space between elements */
-}
-
-.theme-controls {   /* KEEPS THE THEME TOGGLE CENTERED */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
