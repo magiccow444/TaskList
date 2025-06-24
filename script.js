@@ -4,6 +4,12 @@ const taskTimeInput = document.getElementById('taskTime');
 const taskUnorderedList = document.getElementById('taskUnorderedList');
 const taskOrderedList = document.getElementById('taskOrderedList');
 
+// AUTO-RESIZES TASK INPUT TEXTAREA (MAKES INPUT BOX INCREASE WITH CHARACTER INPUT)
+taskInput.addEventListener('input', () => {
+  taskInput.style.height = 'auto';    // Resets height
+  taskInput.style.height = taskInput.scrollHeight + 'px';   // Set height to match content
+});
+
 // CONVERTS MILITARY TIME TO AMs AND PMs
 function formatTime24to12(timeStr) {
   const [hour, minute] = timeStr.split(':');
@@ -13,7 +19,7 @@ function formatTime24to12(timeStr) {
   return `${hour12}:${minute} ${ampm}`;
 }
 
-// OPTIONAL: CONVERTS AMs AND PMs BACK TO MILITARY TIME (NOT CURRENTLY IN USE)
+// NOT CURRENTLY IN USE: CONVERTS AMs AND PMs BACK TO MILITARY TIME
 function convert12to24(time12h) {
   const [time, modifier] = time12h.split(' ');
   let [hours, minutes] = time.split(':');
@@ -28,51 +34,19 @@ function getTimeAsNumber(timeStr) {
   return hour * 60 + minute;
 }
 
-// AUTO-RESIZES TASK INPUT TEXTAREA (MAKES INPUT BOX INCREASE WITH CHARACTER INPUT)
-taskInput.addEventListener('input', () => {
-  taskInput.style.height = 'auto';    // Resets height
-  taskInput.style.height = taskInput.scrollHeight + 'px';   // Set height to match content
-});
-
 // FUNCTION TO ADD TASK
 function addTask() {
-  const taskText = taskInput.value.trim();
-  const rawTime = taskTimeInput.value;
-  let timedTask = false;
+  const taskText = taskInput.value.trim();    // retrieves task input and automatically trims it
+  const rawTime = taskTimeInput.value;        // retreives inputted time
+  let timedTask = false;                      // track if time is stored
   let taskTime = '';
-  
-  // IF TIMED TASK: ADD TASK TO TIMED LIST
-  if (rawTime) {
-    taskTime = formatTime24to12(rawTime);
-    timedTask = true;
-  }
 
   // IF EMPTY INPUT: DON'T ADD AS A TASK
   if (taskText === '') return;
   
-  // CLEARS THE INPUT BOX, THE TIME INPUT, & RESETS THE HEIGHT
-  taskInput.value = '';
-  taskTimeInput.value = ''; 
-  taskInput.style.height = 'auto';   
-
-  // SLIGHT DELAY FOR BROWSER TO CALCULTAE THE SCROLL HEIGHT
-  setTimeout(() => {
-    taskInput.style.height = taskInput.scrollHeight + 'px';
-  }, 0);
-
   // LI = LIST ITEM, EACH ENTERED TASK IS REPRESENTED AS ONE 'LI' ELEMENT
   // CREATES A NEW 'LI' (TASK ITEM) ELEMENT
   const li = document.createElement('li');
-  
-  // IF TIMED TASK: STORE 24-HOUR TIME FOR SORTING
-  if (timedTask) {
-    li.setAttribute('data-time24', rawTime); 
-  }
-
-  // SPAN FOR NEW TASKS (STYLE IN CSS)
-  const taskSpan = document.createElement('span');
-  taskSpan.classList.add('task-text');  
-  taskSpan.textContent = timedTask ? `${taskTime} - ${taskText}` : taskText;
 
   // TOGGLES TASK COMPLEITION (ALLOWS USER TO CLICK THE TASK TO MARK AS COMPLETE)
   li.addEventListener('click', () => {
@@ -89,17 +63,37 @@ function addTask() {
     e.stopPropagation(); // Prevent toggle when clicking trash can
     li.remove();
   };
+  
+  // IF TIMED TASK: ADD TASK TO TIMED LIST
+  if (rawTime) {
+    taskTime = formatTime24to12(rawTime);
+    timedTask = true;
+  }  
 
-  // ADDS THE TASK TEXT AND REMOVE BUTTON TO THE TO-DO LIST
-  li.appendChild(taskSpan);
-  li.appendChild(removeBtn);
+  // IF TIMED TASK: STORE 24-HOUR TIME FOR SORTING
+  if (timedTask) {
+    li.setAttribute('data-time24', rawTime); 
+  }
+
+  // SPAN FOR NEW TASKS (STYLE IN CSS)
+  const taskSpan = document.createElement('span');
+  taskSpan.classList.add('task-text');  
+  taskSpan.innerHTML = timedTask
+    ? `${taskTime} - ${taskText.replace(/\n/g, '<br>')}`
+    : taskText.replace(/\n/g, '<br>');
+
+  // SLIGHT DELAY FOR BROWSER TO CALCULTAE THE SCROLL HEIGHT
+  setTimeout(() => {
+    taskInput.style.height = taskInput.scrollHeight + 'px';
+  }, 0);
 
   // ADDS TASK TO THE APPROPRIATE LIST
+  // IF THE TASK IS TIMED: ADD TO ORDERED LIST
   if (timedTask) {
     const newTimeValue = getTimeAsNumber(rawTime); // rawTime = taskTimeInput.value
     let inserted = false;
 
-    // Loop through all current list items and put the current task where it needs to go
+    // LOOPS THROUGH CURRENT ORDERED LIST AND INSERTS IN APPROPRIATE SPOT
     for (let i = 0; i < taskOrderedList.children.length; i++) {
       const existingLi = taskOrderedList.children[i]; 
       const existingRawTime = existingLi.getAttribute('data-time24');
@@ -113,22 +107,31 @@ function addTask() {
       }
     }
 
+    // INSURANCE: IF TIMED TASKED ISN'T PLACED CORRECTLY, IT JUST ADDS IT TO THE END OF THE ORDERED LIST
     if (!inserted) {
       taskOrderedList.appendChild(li); // If not inserted, add to end
     }
   }
+  
+  // IF THE TASK IS NOT TIMED: ADD TO UNORDERED LIST
   else {
     taskUnorderedList.appendChild(li);
   }
 
-  // RESETS INPUT
+  // ADDS THE TASK TEXT AND REMOVE BUTTON TO THE TO-DO LIST
+  li.appendChild(taskSpan);
+  li.appendChild(removeBtn);
+
+  // CLEAN UP: CLEARS THE INPUT BOX, THE TIME INPUT, & RESETS THE HEIGHT
   taskInput.value = '';
-  taskTimeInput.value = '';
+  taskTimeInput.value = ''; 
+  taskInput.style.height = 'auto'; 
 }
   
 // ADDS TASK USING THE 'ENTER' BUTTON
 document.getElementById('taskInput').addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
     addTask();
   }
 });
