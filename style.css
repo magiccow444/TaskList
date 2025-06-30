@@ -147,7 +147,7 @@ li.completed {
 
 /* CHANGE COLOR WHEN HOVERING ADD BUTTON */
 .add-btn:hover {    
-  background: darkgreen;
+  background: #167c2e;
 }
 
 /* REMOVE/TRASH BUTTON FORMATTING */
@@ -170,7 +170,7 @@ li.completed {
 /* CHANGE COLOR WHEN HOVERING REMOVE REMOVE */
 .remove-btn:hover {   
 
-  background: darkred;
+  background: rgb(177, 2, 2);
 }
 
 /* Styles the group of theme buttons (initally hidden) */
@@ -184,43 +184,47 @@ li.completed {
 /* THEME TOGGLER */
 /* STYLES THE 'CHOOSE THEME' TOGGLE */
 #toggleThemesBtn {    
-  font-size: 12px;             /* Text size inside button */
-  padding: 6px 10px;           /* Compact button spacing */
-  height: 45px;
-  width: 150px;                /* Makes it 1/4 the width of its container */
+  background-color: rgba(239, 239, 239, 0.7); /* Background color*/
   border: none;
   border-radius: 10px;         /* Makes the borders round */
-  cursor: pointer;
-  background-color: rgba(239, 239, 239, 0.7); /* Background color*/
   color: black;              /* Black font */ 
-  align-self: flex-start;      /* Keeps it aligned left inside flex container */
+  cursor: pointer;
+  font-size: 12px;             /* Text size inside button */
+  height: 45px;
+  margin-bottom: 5px;
+  padding: 6px 10px;           /* Compact button spacing */
+  width: 150px;                /* Makes it 1/4 the width of its container */
 }
 
 /* DISPLAYS THEME OPTIONS */
 .theme-buttons {    
-  display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  display: none;
+  flex-wrap: column;
   gap: 4px;         /* space between buttons */
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 /* KEEPS THE THEME TOGGLE CENTERED */
 .theme-controls {   
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: auto;
+  justify-content: center;
+  width: 100%;
 }
 
 /* FLEX CONTAINER THAT CENTERS EVERYTHING HORIZONTALLY */
 .wrapper {    
+  align-items: center;            /* Horizonally centers */
   display: flex;                  /* */
   flex-direction: column;         /* */
-  align-items: center;            /* Horizonally centers */
+  gap: 10px;                      /* Space between elements */
   justify-content: flex-start;    /* Aligns at top of page */
   min-height: 100vh;              /* Fills the screen vertically */
   padding-top: 40px;              /* Space from the top of the page */
-  gap: 10px;                      /* Space between elements */
 }
 
 /* THEMES: BACKGROUNDS IMAGES & COLORS */
@@ -248,12 +252,14 @@ body.white {
   background-image: none;
   color: #000000; 
 }
+
  /* STYLES BLACK THEME */
 body.black {   
   background-color: #000000; 
   background-image: none;
   color: #000000; 
 }
+
 /* STYLES BIRTHDAY THEME */
 body.birthday {    
   background-image: url('https://plus.unsplash.com/premium_photo-1663837827386-2eb667eca095?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmlydGhkYXklMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww');
@@ -262,6 +268,19 @@ body.birthday {
   background-repeat: no-repeat;
   color: #ff69b4;
 }
+body.birthday .add-btn {
+  background-color: #ff69b4; /* pink */
+}
+body.birthday .remove-btn {
+  background-color: #8e24aa; /* purple */
+}
+body.birthday .add-btn:hover {
+  background: #db4f95
+}
+body.birthday .remove-btn:hover {
+  background: #561468;
+}
+
 /* STYLES CHRISTMAS THEME */
 body.christmas {    
   background-image: url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=90&auto=format&fit=crop');
@@ -270,6 +289,19 @@ body.christmas {
   background-repeat: no-repeat;
   color: #ee1c1c;
 }
+body.christmas .add-btn {
+  background-color: #ee1c1c; /* red */
+}
+body.christmas .remove-btn {
+  background-color: #2e7d32; /* green */
+}
+body.christmas .add-btn:hover {
+  background: #c00f0f;
+}
+body.christmas .remove-btn:hover {
+  background: #1a551d;
+}
+
 /* STYLES HALLOWEEN THEME */
 body.halloween {    
   background-image: url('https://images.unsplash.com/photo-1635632919713-2a17877a7c8d?w=2000&q=90&auto=format&fit=crop');
@@ -278,14 +310,40 @@ body.halloween {
   background-repeat: no-repeat;
   color: #e87228;
 }
+body.halloween .add-btn {
+  background-color: #e87228; /* orange */
+}
+body.halloween .remove-btn {
+  background-color: #591f9f; /* dark purple */
+}
+body.halloween .add-btn:hover {
+  background: #ca5f1d;
+}
+body.halloween .remove-btn:hover {
+  background-color: #3d1173; 
+}
+
 /* STYLES NEW YEARS THEME */
 body.newyear {    
   background-image: url('https://images.unsplash.com/photo-1515995301990-280d37b2a8c9?w=2000&q=90&auto=format&fit=crop');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  color: #d42525;
+  color: #ee1c1c;
 }
+body.newyear .add-btn {
+  background-color: #ee1c1c; /* black */
+}
+body.newyear .remove-btn {
+  background-color: #fff06d; /* gold/yellow */
+}
+body.newyear .add-btn:hover {
+  background-color: #c00f0f; 
+}
+body.newyear .remove-btn:hover {
+  background-color: #ddd055; 
+}
+
 /* STYLES VACATION THEME */
 body.vacation {    
   background-image: url('https://images.unsplash.com/photo-1716660787535-b80a5e2287e7?w=2000&q=90&auto=format&fit=crop');
@@ -294,39 +352,15 @@ body.vacation {
   background-repeat: no-repeat;
   color: #1d81d8;
 }
-
-/* CUSTOMIZED COLORS FOR THE ADD/REMOVE BUTTONS FOR EACH THEME */
-body.birthday .add-btn {
-  background-color: #ff69b4; /* pink */
-}
-body.birthday .remove-btn {
-  background-color: #8e24aa; /* purple */
-}
-
-body.christmas .add-btn {
-  background-color: #ee1c1c; /* red */
-}
-body.christmas .remove-btn {
-  background-color: #2e7d32; /* green */
-}
-
-body.halloween .add-btn {
-  background-color: #e87228; /* orange */
-}
-body.halloween .remove-btn {
-  background-color: #591f9f; /* dark purple */
-}
-
-body.newyear .add-btn {
-  background-color: #d42525; /* black */
-}
-body.newyear .remove-btn {
-  background-color: #fff06d; /* gold/yellow */
-}
-
 body.vacation .add-btn {
   background-color: #1d81d8; /* ocean blue */
 }
 body.vacation .remove-btn {
   background-color: #fff06d; /* sun yellow */
+}
+body.vacation .add-btn:hover {
+  background-color: #156cb8; 
+}
+body.vacation .remove-btn:hover {
+  background-color: #ddd055; 
 }
